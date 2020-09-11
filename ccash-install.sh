@@ -7,7 +7,7 @@ CONFIGFOLDER='/root/.ccash'
 COIN_DAEMON='CampusCashd'
 COIN_CLI='CampusCash-cli'
 
-COIN_PATH='/usr/local/bin/'
+COIN_PATH='~/CampusCash/src'
 COIN_TGZ='https://github.com/SaltineChips/CampusCash/archive/1.0.7.9.tar.gz'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 #COIN_SNAPSHOT=''
@@ -91,7 +91,7 @@ function create_config() {
   mkdir $CONFIGFOLDER >/dev/null 2>&1
   RPCUSER=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w10 | head -n1)
   RPCPASSWORD=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w22 | head -n1)
-   cat << "CONFIG" >> ~/.CCASH/CampusCash.conf
+   cat << "CONFIG" >> ~/.ccash/CampusCash.conf
 listen=1
 server=1
 daemon=1
