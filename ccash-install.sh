@@ -29,9 +29,11 @@ function download_node() {
   wget -q $COIN_TGZ
   compile_error
   unzip $COIN_ZIP >/dev/null 2>&1
-  #cd bin #verify
-  chmod +x $COIN_DAEMON $COIN_CLI # $COIN_TX 
-  cp $COIN_DAEMON $COIN_CLI $COIN_PATH # $COIN_TX
+  cd ~; cd /CampusCash/src
+  chmod a+x obj; chmod a+x leveldb/build_detect_platform
+  chmod a+x secp256k1; chmod a+x leveldb; chmod a+x ~/CampusCash/src; chmod a+x ~/CampusCash; make -f makefile.unix USE_UPNP=-; cd ~; cp -r ~/CampusCash/src/CampusCashd/usr/local/bin/CampusCashd; 
+  chmod +x $COIN_DAEMON $COIN_CLI
+  cp $COIN_DAEMON $COIN_CLI $COIN_PATH
   cd ~ >/dev/null
   rm -rf $TMP_FOLDER >/dev/null 2>&1
   clear
@@ -85,10 +87,11 @@ EOF
 
 
 function create_config() {
+  cd ~; sudo mkdir ~/.ccash
   mkdir $CONFIGFOLDER >/dev/null 2>&1
   RPCUSER=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w10 | head -n1)
   RPCPASSWORD=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w22 | head -n1)
-  cat << EOF > $CONFIGFOLDER/$CONFIG_FILE
+   cat << "CONFIG" >> ~/.CCASH/CampusCash.conf
 listen=1
 server=1
 daemon=1
@@ -117,7 +120,8 @@ addnode=82.165.119.20:19427
 addnode=82.165.119.20
 addnode=82.165.115.26:19427
 addnode=82.165.115.26
-EOF
+CONFIG
+
 chmod 700 ~/.ccash/CampusCash.conf; chmod 700 ~/.ccash; ls -la ~/.ccash
 }
 
@@ -162,6 +166,9 @@ function enable_firewall() {
   ufw allow ssh comment "SSH" >/dev/null 2>&1
   ufw limit ssh/tcp >/dev/null 2>&1
   ufw default allow outgoing >/dev/null 2>&1
+  ufw allow 18695/tcp
+  ufw allow 19427/tcp
+  ufu allow 22/tcp
   echo "y" | ufw enable >/dev/null 2>&1
 }
 
@@ -295,7 +302,6 @@ function setup_node() {
 
 ##### Main #####
 clear
-
 checks
 prepare_system
 create_swap
