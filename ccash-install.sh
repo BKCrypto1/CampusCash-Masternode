@@ -4,7 +4,7 @@
 TMP_FOLDER=$(mktemp -d)
 CONFIG_FILE='ccash.conf'
 CONFIGFOLDER='/root/.ccash'
-COIN_DAEMON='ccashd'
+COIN_DAEMON='campuscashd'
 COIN_CLI='ccash-cli'
 
 COIN_PATH='/usr/local/bin/'
