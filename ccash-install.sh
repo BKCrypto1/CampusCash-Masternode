@@ -8,7 +8,7 @@ COIN_DAEMON='ccashd'
 COIN_CLI='ccash-cli'
 
 COIN_PATH='/usr/local/bin/'
-COIN_TGZ=''
+COIN_TGZ='https://github.com/SaltineChips/CampusCash/archive/1.0.7.9.tar.gz'
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 #COIN_SNAPSHOT=''
 COIN_NAME='CampusCash'
@@ -201,7 +201,7 @@ fi
 
 function checks() {
 if [[ $(lsb_release -d) != *18.04* ]]; then
-  echo -e "${RED}You are not running Ubuntu 18.04. Installation is cancelled.${NC}"
+  echo -e "${RED}You are not running Ubuntu 16.04. Installation is cancelled.${NC}"
   exit 1
 fi
 
