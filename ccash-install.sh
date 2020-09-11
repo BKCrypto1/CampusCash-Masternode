@@ -2,10 +2,10 @@
 #!/bin/bash
 
 TMP_FOLDER=$(mktemp -d)
-CONFIG_FILE='ccash.conf'
+CONFIG_FILE='CampusCash.conf'
 CONFIGFOLDER='/root/.ccash'
-COIN_DAEMON='campuscashd'
-COIN_CLI='ccash-cli'
+COIN_DAEMON='CampusCashd'
+COIN_CLI='CampusCash-cli'
 
 COIN_PATH='/usr/local/bin/'
 COIN_TGZ='https://github.com/SaltineChips/CampusCash/archive/1.0.7.9.tar.gz'
